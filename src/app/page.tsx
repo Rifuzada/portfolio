@@ -1,34 +1,57 @@
 'use client'
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [audioError, setAudioError] = useState<Error>();
+  const hover = () => {
+    setAudioError(undefined);
+    const audio = new Audio(
+      'https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/hoversound.mp3'
+    );
+    audio.currentTime = 4.7;
+    audio.volume = 0.2;
+    audio.play().catch((error) => setAudioError(error));
+  };
+  const play = () => {
+    const audio = new Audio(
+      'https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/startup.mp4'
+    )
+    audio.play().catch((error) => setAudioError(error));
+  }
+  const videoend = () => {
+    setAudioError(undefined);
+    const audio = new Audio(
+      'https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/hoversound.mp3'
+    );
+    audio.currentTime = 0;
+    audio.addEventListener('timeupdate', function(){
+      if(this.currentTime >= 4.7){
+        this.pause();
+        this.currentTime = 0;
+      }
+    });
+    audio.volume = 0.2;
+    audio.play().catch((error) => setAudioError(error));
+  }
   return (
     <main className="flex justify-center items-center w-full h-screen">
         <video
-          className="absolute w-full h-full z-10"
+          className="absolute w-500 h-500 z-10"
           muted
           autoPlay
+          onClick={play}
           onEnded={(e) => {
             e.currentTarget.style.display = "none";
             document.body.style.overflow = "auto"; // Enable scrolling
+            videoend();
           }}
         >
           <source src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/startup.mp4" type="video/mp4" />
         </video>
       <div className="grid grid-cols-4 grid-rows-3 gap-2">
-      <audio id="sound-effect" src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/hoversound.mp3" preload="auto"></audio>
         <div id="title" className="relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group"
-                    onMouseEnter={() => {
-                      const audio = document.getElementById("sound-effect") as HTMLAudioElement;
-                      if (audio.src) {
-                        audio.currentTime = 4;
-                        audio.play().catch((error) => {
-                          console.error("Error playing audio:", error);
-                        });
-                      } else {
-                        console.error("Error: The media resource indicated by the src attribute or assigned media provider object was not suitable.");
-                      }
-                    }}>
+                    onMouseEnter={hover}>
           {/* Efeito de reflexo */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
           <a href="https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/?l=portuguese" target="_blank">
@@ -40,7 +63,7 @@ export default function Home() {
         </div>
         
         {/* Bloco grande (LoLData) com efeito de reflexo */}
-        <div id="title" className="relative bg-[black] hover:scale-110 hover:z-10 z-0 ease-in duration-200 cursor-pointer col-span-2 row-span-2 flex flex-col justify-center text-center p-4 overflow-hidden group">
+        <div id="title" className="relative bg-[black] hover:scale-110 hover:z-10 z-0 ease-in duration-200 cursor-pointer col-span-2 row-span-2 flex flex-col justify-center text-center p-4 overflow-hidden group" onMouseEnter={hover}>
           {/* Efeito de reflexo */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
           <a href="https://x.com/rifuzada" target="_blank">
@@ -53,7 +76,7 @@ export default function Home() {
           </a>
         </div>
         
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://www.youtube.com/@Rifuzada" target="_blank">
@@ -65,7 +88,7 @@ export default function Home() {
               </p>
             </a>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://letterboxd.com/Rifuzada/" target="_blank">
@@ -77,7 +100,7 @@ export default function Home() {
             </p>
             </a>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://www.tiktok.com/@rifuzada" target="_blank">
@@ -89,7 +112,7 @@ export default function Home() {
             </p>
             </a>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://github.com/Rifuzada/" target="_blank">
@@ -101,7 +124,7 @@ export default function Home() {
             </p>
             </a>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://steamcommunity.com/id/Rifuzada/" target="_blank">
@@ -113,7 +136,7 @@ export default function Home() {
             </p>
             </a>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <div className="flex justify-center items-center mt-6"> {/* Adicionando margem superior para centralizar melhor */}
@@ -123,7 +146,7 @@ export default function Home() {
               Discord
             </p>
           </div>
-          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+          <div id="title" className=" bg-[#088c04] relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group" onMouseEnter={hover}>
             {/* Efeito de reflexo */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <a href="https://instagram.com/rifuzada" target="_blank">
