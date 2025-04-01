@@ -16,11 +16,18 @@ export default function Home() {
           <source src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/startup.mp4" type="video/mp4" />
         </video>
       <div className="grid grid-cols-4 grid-rows-3 gap-2">
-      <audio id="sound-effect" src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/untitled%20video%20-%20make%20with%20clipchamp(11).mp4" preload="auto"></audio>
+      <audio id="sound-effect" src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/hoversound.mp3" preload="auto"></audio>
         <div id="title" className="relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group"
                     onMouseEnter={() => {
                       const audio = document.getElementById("sound-effect") as HTMLAudioElement;
-                      audio.play();
+                      if (audio.src) {
+                        audio.currentTime = 4;
+                        audio.play().catch((error) => {
+                          console.error("Error playing audio:", error);
+                        });
+                      } else {
+                        console.error("Error: The media resource indicated by the src attribute or assigned media provider object was not suitable.");
+                      }
                     }}>
           {/* Efeito de reflexo */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
