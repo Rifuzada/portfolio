@@ -3,6 +3,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex justify-center items-center w-full h-screen">
+      <div>
+        <video autoPlay>
+          <source src="" type="video/mp4" />
+        </video>
+      </div>
       <div className="grid grid-cols-4 grid-rows-3 gap-2">
         <div id="title" className="relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
           {/* Efeito de reflexo */}
