@@ -1,15 +1,27 @@
+'use client'
 import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="flex justify-center items-center w-full h-screen">
-      <div>
-        <video autoPlay>
-          <source src="" type="video/mp4" />
+        <video
+          className="absolute w-full h-full z-10"
+          muted
+          autoPlay
+          onEnded={(e) => {
+            e.currentTarget.style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+          }}
+        >
+          <source src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/startup.mp4" type="video/mp4" />
         </video>
-      </div>
       <div className="grid grid-cols-4 grid-rows-3 gap-2">
-        <div id="title" className="relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group">
+      <audio id="sound-effect" src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/untitled%20video%20-%20make%20with%20clipchamp(11).mp4" preload="auto"></audio>
+        <div id="title" className="relative cursor-pointer w-60 hover:scale-110 hover:z-10 z-0 ease-in duration-200 row-span-1 col-span-1 overflow-hidden group"
+                    onMouseEnter={() => {
+                      const audio = document.getElementById("sound-effect") as HTMLAudioElement;
+                      audio.play();
+                    }}>
           {/* Efeito de reflexo */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
           <a href="https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/?l=portuguese" target="_blank">
