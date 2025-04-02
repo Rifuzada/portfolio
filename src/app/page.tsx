@@ -100,7 +100,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
           <a href="https://letterboxd.com/Rifuzada/" target="_blank">
             <div className="flex justify-center items-center mt-5">
-              <img className="max-w-30 h-auto" src="https://raw.githubusercontent.com/Rifuzada/portfolio/317256cf0d37ebff2ebb666f3bb8656e48d9d712/src/app/assets/letterboxd.png" alt="imagem de descrição" />
+              <img className="max-w-30 h-auto" src="https://raw.githubusercontent.com/Rifuzada/socials/refs/heads/main/src/app/assets/letterboxd.png" alt="imagem de descrição" />
             </div>
             <p className="absolute inset-0 flex items-end justify-normal text-lg text-white ml-3">
               Letterboxd
